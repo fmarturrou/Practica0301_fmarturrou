@@ -11,6 +11,6 @@ def fibonacci_iterativo(n):
 
 end_time = datetime.datetime.now()
 
-n = 99
+n = 80
 print(f"Fibonacci iterativo de {n}: {fibonacci_iterativo(n)}")
 print("El tiempo de ejecución es:", end_time - start_time)
