@@ -1,6 +1,6 @@
-import datetime
+import time
 
-start_time = datetime.datetime.now()
+
 def fibonacci_iterativo(n):
     if n <= 1:
         return n
@@ -9,8 +9,19 @@ def fibonacci_iterativo(n):
         a, b = b, a + b
     return b
 
-end_time = datetime.datetime.now()
 
-n = 80
-print(f"Fibonacci iterativo de {n}: {fibonacci_iterativo(n)}")
-print("El tiempo de ejecución es:", end_time - start_time)
+def medir_tiempo(funcion, n):
+    start_time = time.time()
+    funcion(n)
+    end_time = time.time()
+    return end_time - start_time
+
+
+valores_n = [1, 10, 20, 30, 40]
+
+
+for n in valores_n:
+    tiempo_iterativo = medir_tiempo(fibonacci_iterativo, n)
+    print(f"n = {n}")
+    print(f"Tiempo iterativo: {tiempo_iterativo:.6f} segundos")
+    print('-' * 40)

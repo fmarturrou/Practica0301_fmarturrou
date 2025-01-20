@@ -1,19 +1,24 @@
-import datetime
-
-start_time = datetime.datetime.now()
-def fibonacci_recursivo_memorizado(n, memo={0: 0, 1: 1}):
-    # Si n no es un número entero, lo redondeamos al número entero más cercano
-    n = round(n)
-    
-    # Si n no está en el diccionario memo, calculamos el valor
-    if n not in memo:
-        memo[n] = fibonacci_recursivo_memorizado(n - 1, memo) + fibonacci_recursivo_memorizado(n - 2, memo)
-    
-    return memo[n]
+import time
 
 
-end_time = datetime.datetime.now()
+def fibonacci_recursivo(n):
+    if n <= 1:
+        return n
+    return fibonacci_recursivo(n - 1) + fibonacci_recursivo(n - 2)
 
-n = 99
-print(f"Fibonacci recursivo de {n}: {fibonacci_recursivo_memorizado(n)}")
-print("El tiempo de ejecución es:", end_time - start_time)
+
+def medir_tiempo(funcion, n):
+    start_time = time.time()
+    funcion(n)
+    end_time = time.time()
+    return end_time - start_time
+
+
+valores_n = [1, 10, 20, 30, 40]
+
+
+for n in valores_n:
+    tiempo_recursivo = medir_tiempo(fibonacci_recursivo, n)
+    print(f"n = {n}")
+    print(f"Tiempo recursivo: {tiempo_recursivo:.6f} segundos")
+    print('-' * 40)
